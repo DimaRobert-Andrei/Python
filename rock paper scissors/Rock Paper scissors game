@@ -1,0 +1,55 @@
+import random
+
+list=['''
+    _______
+---'   ____)
+      (_____)
+      (_____)
+      (____)
+---.__(___)
+'''
+,'''
+    _______
+---'   ____)____
+          ______)
+       __________)
+      (____)
+---.__(___)
+''','''
+     _______
+---'   ____)____
+          ______)
+          _______)
+         _______)
+---.__________)
+''']
+your_choice=input("What do u chose ?For rock press 0 for scissors press 1 for paper press 2")
+computer_choice=random.choice(list)
+if your_choice == "0":
+    print(f"you chose {list[0]}")
+elif your_choice == "1":
+        print(f"you chose {list[1]}")
+elif your_choice == "2":
+        print(f"you chose {list[2]}")
+print(f"computer chose {computer_choice}")
+#Piatra
+if your_choice=="0"and computer_choice==list[0]:
+    print("It's a draw")
+elif your_choice=="1"and computer_choice==list[0]:
+    print("You Lose")
+elif your_choice=="2"and computer_choice==list[0]:
+        print("You Win")
+#Foarfeca
+if your_choice=="0"and computer_choice==list[1]:
+    print("You Win")
+elif your_choice=="1"and computer_choice==list[1]:
+    print("It's a draw")
+elif your_choice=="2"and computer_choice==list[1]:
+        print("You lose")
+#Foaie
+if your_choice=="0"and computer_choice==list[2]:
+    print("You Lose")
+elif your_choice=="1"and computer_choice==list[2]:
+    print("You WIN")
+elif your_choice=="2"and computer_choice==list[2]:
+        print("It's a draw")
