@@ -1,0 +1,27 @@
+instagram_followers = {
+    "Cristiano Ronaldo": 633_000_000,
+    "Lionel Messi": 506_000_000,
+    "Selena Gomez": 430_000_000,
+    "Kylie Jenner": 400_000_000,
+    "Dwayne Johnson": 397_000_000,
+    "Ariana Grande": 380_000_000,
+    "Kim Kardashian": 364_000_000,
+    "Beyoncé": 320_000_000,
+    "Khloé Kardashian": 310_000_000,
+    "Kendall Jenner": 290_000_000,
+    "Justin Bieber": 290_000_000,
+    "Taylor Swift": 283_000_000,
+    "Jennifer Lopez": 260_000_000,
+    "Nicki Minaj": 230_000_000,
+    "Virat Kohli": 265_000_000,
+    "Neymar Jr": 220_000_000,
+    "Kourtney Kardashian": 220_000_000,
+    "Miley Cyrus": 210_000_000,
+    "Zendaya": 185_000_000,
+    "Cardi B": 170_000_000,
+    "Shakira": 150_000_000,
+    "Rihanna": 150_000_000,
+    "Chris Hemsworth": 110_000_000,
+    "Emma Watson": 70_000_000
+}
+
