@@ -26,6 +26,8 @@ def prepare_drink(drink_name, meniu, ingredients):
 			totalul=budget-rest
 		else:
 			print(f"Sorry u don't have enough money {budget} ")
+	else:
+		print(f"Sorry we don t have enough resources")
 	return totalul
 on=input("Type on tu turn on ")
 igredients= {
@@ -52,7 +54,7 @@ while coffee_machine:
 			incasari += total1
 		elif ask=="report":
 			print(igredients)
-			print(round(incasari,1))
+			print(round(incasari,1),"$")
 	off=input("Do u want another drink?")
 	if off=="no":
 		coffee_machine=False
