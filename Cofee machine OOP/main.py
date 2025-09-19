@@ -25,7 +25,5 @@ while continua:
                 if money_machine.make_payment(drink.cost):
                     coffee_maker.make_coffee(drink)
                     print(f"The drink {drink.name} is ready and it cost ${drink.cost}.")
-        else:
-            print(f"Sorry,we are unable to make the drink {drink.name}")
-            continua=False
+       
 
