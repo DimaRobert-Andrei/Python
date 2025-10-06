@@ -1,6 +1,7 @@
 from data import question_data
 from random import choice
 score=0
+
 class Quiz_Game:
     def __init__(self, question, correct_answer):
         self.question = question
@@ -17,4 +18,7 @@ while continua:
     else:
         print(f"Incorrect!This was your score {score}")
         continua=False
-
+    question_data.remove(intrebare)
+    if not question_data:
+        continua=False
+        print("Ai castigat.Nu mai sunt intrebari ")
