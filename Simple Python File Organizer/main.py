@@ -1,0 +1,91 @@
+import os
+import shutil
+import logging
+
+# 1. Configurare Logging (pentru un portofoliu mai bun)
+# Creează un fișier jurnal numit 'organizer_log.txt'
+logging.basicConfig(filename='organizer_log.txt',
+                    level=logging.INFO,
+                    format='%(asctime)s - %(levelname)s - %(message)s')
+
+
+def organize_files_in_directory(target_dir):
+
+    if not os.path.isdir(target_dir):
+        print(f"\n[EROARE] Directorul '{target_dir}' nu există sau nu este valid.")
+        logging.error(f"Director invalid specificat: {target_dir}")
+        return
+
+    print(f"\n--- Începe organizarea în: {target_dir} ---")
+    logging.info(f"Începe procesarea directorului: {target_dir}")
+
+    file_type_map = {
+
+        ('.jpg', '.jpeg', '.png', '.gif', '.tiff', '.webp'): 'Imagini',
+
+        ('.pdf', '.doc', '.docx', '.txt', '.rtf', '.xls', '.xlsx', '.ppt', '.pptx'): 'Documente',
+
+        ('.zip', '.rar', '.7z', '.tar', '.gz'): 'Arhive',
+
+        ('.mp4', '.mov', '.avi', '.mkv', '.wmv'): 'Video',
+
+        ('.mp3', '.wav', '.flac', '.aac'): 'Audio',
+
+        ('.py', '.js', '.html', '.css', '.java', '.c', '.cpp'): 'Cod_Scripturi',
+
+        ('.exe', '.msi'): 'Instalatoare'
+
+    }
+
+
+    extension_to_folder = {}
+    for extensions, folder_name in file_type_map.items():
+        for ext in extensions:
+            extension_to_folder[ext] = folder_name
+
+
+    files_to_move = [f for f in os.listdir(target_dir) if os.path.isfile(os.path.join(target_dir, f))]
+    moved_count = 0
+
+    for filename in files_to_move:
+
+        _, extension = os.path.splitext(filename)
+        extension = extension.lower()
+
+        destination_folder_name = extension_to_folder.get(extension, 'Altele')
+
+
+        source_path = os.path.join(target_dir, filename)
+        destination_dir = os.path.join(target_dir, destination_folder_name)
+        destination_path = os.path.join(destination_dir, filename)
+
+        try:
+
+            if not os.path.exists(destination_dir):
+                os.makedirs(destination_dir)
+                logging.info(f"Director creat: {destination_dir}")
+
+
+            if not os.path.exists(destination_path):
+                shutil.move(source_path, destination_dir)
+                print(f"  [MUTAT] {filename} -> {destination_folder_name}/")
+                logging.info(f"Mutat: {filename} către {destination_folder_name}")
+                moved_count += 1
+            else:
+                print(f"  [SKIP] {filename} (există deja în destinație).")
+                logging.warning(f"Sărit: {filename}, deja existent.")
+
+        except Exception as e:
+            print(f"  [EROARE MUTARE] Nu s-a putut muta {filename}: {e}")
+            logging.error(f"Eroare la mutarea fișierului {filename}: {e}")
+
+    print(f"\n--- Organizare finalizată! {moved_count} fișiere mutate. ---")
+    print(f"Verifică fișierul 'organizer_log.txt' pentru detalii.")
+    logging.info("Proces de organizare finalizat cu succes.")
+
+
+if __name__ == "__main__":
+
+    target_directory = input("Introdu calea completă a directorului de organizat: ")
+
+    organize_files_in_directory(target_directory)
