@@ -1,0 +1,10 @@
+- pm2_5:
+    nivel: Nociv
+    valoare: 133.2
+  temperatura:
+    nivel: Prea Rece
+    valoare: 15.2
+  timestamp: '2026-01-16 15:31:15'
+  umiditate:
+    nivel: Acceptabil
+    valoare: 66.0
