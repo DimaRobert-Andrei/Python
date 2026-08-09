@@ -24,8 +24,8 @@ for nume, luna, ziua in zip(Name, month, day_birth):
             continut=continut_ales.read()
         nume_schimbat= continut.replace("[NAME]",nume)
 
-my_email = "dimarobert788@gmail.com"
-password = "vubc awyd rfed oiid"
+my_email = "your_mail"
+password = "your_password_from_app_pass"
 with smtplib.SMTP('smtp.gmail.com', 587) as connection:
     connection.starttls()
     connection.login(user=my_email, password=password)
