@@ -1,46 +1,33 @@
-- cron: "0 9 * * *"
-import os
-import requests
-import smtplib
-from dotenv import load_dotenv
-load_dotenv()
-my_email = os.getenv("MY_EMAIL")
-password = os.getenv("EMAIL_PASSWORD")
-appid = os.getenv("OPENWEATHER_API_KEY")
+name: Weather Alert Daily
 
-lat=44.856850
-lon=24.869740
-param={
-    "appid": appid,
-    "lat": lat,
-    "lon": lon,
-    "cnt":4,
-}
+on:
+  schedule:
+    - cron: '0 7 * * *' # Ruleaza in fiecare zi la ora 07:00 UTC
+  workflow_dispatch: # Permite sa il pornesti si manual din site-ul GitHub
 
+jobs:
+  run-weather-script:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-respones = requests.get("https://api.openweathermap.org/data/2.5/forecast", params=param)
-respones.raise_for_status()
-data = respones.json()
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
 
+      - name: Install dependencies
+        run: |
+          pip install requests python-dotenv twilio
 
-
-will_rain=False
-for hour in data["list"]:
-    condition=hour["weather"][0]["id"]
-    if int(condition)>700:
-        will_rain=True
-if will_rain:
-  with smtplib.SMTP("smtp.gmail.com",587) as connection:
-      connection.starttls()
-      connection.login(user=my_email, password=password)
-      email_body="Subject:Vremea pe ziua de azi!\n\nVa ploua, mai bine iei o umbrela."
-      connection.sendmail(from_addr=my_email, to_addrs="dimarobert7788@gmail.com",msg=email_body.encode("utf8"))
-else:
-    vremea_de_azi=data["list"][0]["weather"][0]["description"]
-    general=data["list"][0]["weather"][0]["main"]
-    temp=int(data["list"][0]["main"]["temp"])-273,15
-    with smtplib.SMTP("smtp.gmail.com",587) as connection:
-        connection.starttls()
-        connection.login(user=my_email, password=password)
-        email_body1=f"Subject:Vremea pe ziua de azi!\n\n Aceasta este: {general}\n descriere: {vremea_de_azi}\n temperatura: {temp}\n"
-        connection.sendmail(from_addr=my_email, to_addrs="dimarobert7788@gmail.com",msg=email_body1.encode("utf8"))
+      - name: Run script
+        env:
+          MY_EMAIL: ${{ secrets.MY_EMAIL }}
+          EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
+          OPENWEATHER_API_KEY: ${{ secrets.OPENWEATHER_API_KEY }}
+          TWILIO_ACCOUNT_SID: ${{ secrets.TWILIO_ACCOUNT_SID }}
+          TWILIO_AUTH_TOKEN: ${{ secrets.TWILIO_AUTH_TOKEN }}
+          TWILIO_PHONE_NUMBER: ${{ secrets.TWILIO_PHONE_NUMBER }}
+          MY_PHONE_NUMBER: ${{ secrets.MY_PHONE_NUMBER }}
+        run: python main.py
