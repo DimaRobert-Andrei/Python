@@ -1,0 +1,40 @@
+# Weather Alert Assistant
+
+This project is a Python application that fetches weather forecasts using the OpenWeatherMap API and sends automated alerts (either via Email or SMS using Twilio) depending on the weather conditions.
+
+## General Setup and Requirements
+
+1. Install the required Python libraries in your terminal:
+   ```bash
+   pip install requests python-dotenv twilio
+Create a file named .env in the root directory of your project to store your sensitive credentials safely. Use this template:
+MY_EMAIL=your_email@gmail.com
+EMAIL_PASSWORD=your_gmail_app_password
+OPENWEATHER_API_KEY=your_openweathermap_api_key
+
+TWILIO_ACCOUNT_SID=your_twilio_sid
+TWILIO_AUTH_TOKEN=your_twilio_auth_token
+TWILIO_PHONE_NUMBER=your_twilio_number
+MY_PHONE_NUMBER=your_personal_phone_number
+
+For the Email version
+This script checks the weather forecast for the upcoming hours. If it detects conditions indicating rain, it sends an email warning. If the weather is clear, it sends an informational email with the current temperature
+and general conditions.
+
+Changes to make for Email:
+Ensure you have a Gmail account with 2-Step Verification enabled and an App Password generated (use that app password in your .env file without spaces).
+
+Update the lat and lon variables in the code to match your target location coordinates.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+For the SMS version
+This script utilizes the Twilio API to check the forecast and send a text message directly to your mobile phone if rain or precipitation is detected in the forecast window.
+
+Changes to make for SMS:
+Set up a Twilio account and populate the .env file with your Account SID, Auth Token, and trial phone number.
+
+If using a Twilio Trial account, ensure your destination phone number (MY_PHONE_NUMBER) is verified inside your Twilio console under Verified Caller IDs.
+
+Update lat and lon to your desired geographic coordinates.
