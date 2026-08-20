@@ -2,8 +2,8 @@ name: Weather Alert Daily
 
 on:
   schedule:
-    - cron: '0 7 * * *' # Ruleaza in fiecare zi la ora 07:00 UTC
-  workflow_dispatch: # Permite sa il pornesti si manual din site-ul GitHub
+    - cron: '0 7 * * *' 
+  workflow_dispatch: 
 
 jobs:
   run-weather-script:
@@ -26,8 +26,4 @@ jobs:
           MY_EMAIL: ${{ secrets.MY_EMAIL }}
           EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
           OPENWEATHER_API_KEY: ${{ secrets.OPENWEATHER_API_KEY }}
-          TWILIO_ACCOUNT_SID: ${{ secrets.TWILIO_ACCOUNT_SID }}
-          TWILIO_AUTH_TOKEN: ${{ secrets.TWILIO_AUTH_TOKEN }}
-          TWILIO_PHONE_NUMBER: ${{ secrets.TWILIO_PHONE_NUMBER }}
-          MY_PHONE_NUMBER: ${{ secrets.MY_PHONE_NUMBER }}
-        run: python main.py
+        run: python Rain_alert/Email_version.py
