@@ -26,7 +26,7 @@ data = respones.json()
 will_rain=False
 for hour in data["list"]:
     condition=hour["weather"][0]["id"]
-    if int(condition)>700:
+    if int(condition)<700:
         will_rain=True
 if will_rain:
   with smtplib.SMTP("smtp.gmail.com",587) as connection:
