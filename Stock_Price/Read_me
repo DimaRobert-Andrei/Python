@@ -1,0 +1,61 @@
+# 📈 Stock Price Alert & News Fetcher
+
+This Python script automates the process of monitoring a specific stock's performance (e.g., Apple). If the stock experiences a significant price fluctuation—either gaining 
+or losing more than 10% in a single day—the script fetches the latest relevant news articles and sends an email alert containing the percentage change and the news headlines.
+
+## 🚀 Features
+* **Automated Price Tracking:** Fetches daily stock time series data using a financial API.
+* **Significant Fluctuation Alerts:** Triggers only when a stock jumps by >10% or drops by >10%.
+* **Contextual News Fetching:** Pulls the top 3 latest news articles related to the stock to help explain the price movement.
+* **Email Notifications:** Automatically sends out SMTP email alerts detailing the price change and the news headlines causing it.
+
+## 📋 Prerequisites
+Before running this script, ensure you have the following installed:
+* Python 3.x
+* The `requests` library
+
+You can install the required library using:
+```bash
+pip install requests
+🛠️ Configuration & Setup
+This script relies on a separate config.py file to keep your API keys, credentials, and parameters secure.
+
+Create a file named config.py in the same directory as your main script.
+
+Add the following variables to config.py and replace the placeholders with your actual data:
+
+Python
+# config.py
+
+stock_end_point = "YOUR_STOCK_API_ENDPOINT"
+param_stock_price = {
+    "function": "TIME_SERIES_DAILY",
+    "symbol": "AAPL",
+    "apikey": "YOUR_STOCK_API_KEY"
+}
+
+stock_news_endpoint = "YOUR_NEWS_API_ENDPOINT"
+param_stock_news = {
+    "q": "apple",
+    "apiKey": "YOUR_NEWS_API_KEY"
+}
+
+symbol = "AAPL"
+my_email = "your_email@gmail.com"
+password = "your_app_password" # Use an App Password, not your standard email password!
+⚠️ Important Note on Email Security:
+If you are using Gmail, standard passwords will not work due to security restrictions. You must enable 2-Step Verification on your Google Account and generate an App Password to use in the password variable.
+
+💻 Usage
+Once your config.py is set up, simply run the main script from your terminal:
+
+Bash
+python main.py
+(Replace main.py with whatever you named your script).
+
+If the stock fluctuates by more than 10%, you will receive an email for each of the top 3 news articles explaining the shift.
+
+
+***
+
+
