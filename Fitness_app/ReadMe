@@ -1,0 +1,59 @@
+# 🏋️‍♂️ Python Fitness & Workout Tracker API
+
+A Python script that allows you to track your daily workouts using **natural language input** (e.g., *"swimming for 2 hours"* or *"150 pushups"*). The app communicates with a fitness/nutrition API to automatically estimate the duration and calories burned, and then logs the data directly into a **Google Sheet** via the **Sheety API**.
+
+---
+
+## ✨ Features
+
+* **Natural Language Processing:** Just type what you did in plain English; the API handles the parsing and estimations.
+* **Google Sheets Integration:** Automatically appends a new row containing the date, time, exercise name, duration, and calories burned.
+* **Secure Credential Management:** Uses `python-dotenv` to keep API keys and tokens hidden and secure.
+* **Robust Error Handling:** Implements `try...except` blocks with HTTP and structure error checks to prevent crashes and display clear messages.
+
+---
+
+## 🛠️ Technologies Used
+
+* **Python 3.x**
+* **Requests Library** (for making HTTP POST requests)
+* **Python-Dotenv** (for handling environment variables securely)
+* **Nutrition/Fitness API** (100 Days of Python / Nutritionix endpoint)
+* **Sheety API** (for connecting Python to Google Sheets)
+
+---
+
+## 🚀 Getting Started
+
+### 1. Clone the Repository
+```bash
+git clone [https://github.com/YOUR_USERNAME/your-repo-name.git](https://github.com/YOUR_USERNAME/your-repo-name.git)
+cd your-repo-name
+2. Install Dependencies
+Make sure you have Python installed, then install the required libraries:
+
+Bash
+pip install requests python-dotenv
+3. Configure Environment Variables
+Create a file named .env in the root directory of your project and add your credentials:
+
+Fragment de cod
+NIX_APP_ID=your_nutrition_app_id
+NIX_API_KEY=your_nutrition_api_key
+SHEETY_ENDPOINT=your_sheety_api_endpoint_url
+SHEETY_AUTH=Basic your_base64_encoded_auth_string
+💻 Usage
+Run the script from your terminal:
+
+Bash
+python main.py
+When prompted, type your workout description in plain English:
+
+
+Exercise description?
+> ran 5 km and did 100 pushups
+The script will fetch the workout details, calculate duration and calories, and instantly update your Google Sheet!
+
+🔒 Security Note
+This project uses a .env file to protect sensitive keys. Ensure you add .env to your .gitignore file before pushing your code to GitHub:
+
